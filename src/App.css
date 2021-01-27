@@ -17,13 +17,9 @@
 }
 
 .App-header {
-  background-image:
-  url("/backgrounds/desert.jpg"), 
-  url("/backgrounds/country.jpg"), 
-  url("/backgrounds/mountains.jpg"), 
-  url("/backgrounds/orange sky.jpg"), 
-  url("/backgrounds/trees.jpg");
+  /* background-image: url("backgrounds/desert.jpg"); */
   min-height: 100vh;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,4 +39,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+footer{
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
 }
