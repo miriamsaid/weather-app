@@ -1,10 +1,29 @@
+import moment from 'moment';
+import React, { useState } from 'react';
 import './App.css';
+import iconUrl from "./icons/10d.png";
+
 const api = {
   key: "cf1a610a47c7a1e0c56e3391803c790f",
   base: "https://api.openweathermap.org/data/2.5/"
 }
 
 function App() {
+
+  const [query, setQuery] = useState('');
+  const [weather, setWeather] = useState({});
+
+  const search = evt => {
+    if (evt.key === "Enter"){
+      fetch(`${api.base}weather?q=${query}&units=meet&APPID=${api.key}`)
+      .then(res => res.json())
+      .then(result => 
+        setWeather(result));
+        setQuery('');
+        console.log(weather);
+    }
+  }
+
 
   const dateBuilder = (d) => {
     let months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"]
@@ -26,21 +45,36 @@ function App() {
           <input
           type="text"
           className="search-bar"
-          placeholder="Search..."></input>
+          placeholder="Search..."
+          onChange= {e => setQuery(e.target.value)}
+          value={query}
+          onKeyPress={search}
+          ></input>
         </div>
+        {(typeof weather.main != "undefined") ? (
         <div>
-          <div className= "location">New York City, US</div>
-        <div className = "row weather-box">
+          <div className= "location">{weather.name}, {weather.sys.country}</div>
+          <div className="description">{weather.weather[0].main}</div>
+          <div className = "row weather-box">
+          <div className= "col-sm"><img 
+          src = {iconUrl} 
+          alt="weather" 
+          className= "icon"
+          ></img></div>           
           <div className= "col-sm">
-          <div className= "temp"> 20°C</div>
-          <div className="description">Sunny</div>
+          <div className= "temp">{Math.round(weather.main.temp)-273}°c</div>
           </div>
-          <div className= "col-sm"><img src = "icons/01d.png"></img></div>
+          </div>
+          <div className="sunsetSunrise">
+            {
+              ((weather.sys.sunrise) > (moment.utc(weather.timezone))
+              ? ['Sunset at ' , (moment.unix(weather.sys.sunset).format("hh:mm a"))]
+              : ['Sunrise at ' , (moment.unix(weather.sys.sunrise).format("hh:mm a"))]
+            )} </div>
         </div>
-        <div>Sunset in 30 mins</div>
-        </div>
+        ) : ('')}
       </main>
-      <footer className="bg-light mt-auto py-3 text-center text-muted"><small>- Coded by Miriam Said -</small></footer>
+      <footer className="mt-auto py-2  text-center"><small>- Coded by Miriam Said -</small></footer>
     </div>
   );
 }
