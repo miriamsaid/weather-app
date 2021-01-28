@@ -1,7 +1,7 @@
-import moment from 'moment';
+import moment from 'moment'
+import 'moment-timezone';
 import React, { useState } from 'react';
 import './App.css';
-import iconUrl from "./icons/10d.png";
 
 const api = {
   key: "cf1a610a47c7a1e0c56e3391803c790f",
@@ -24,55 +24,49 @@ function App() {
     }
   }
 
-
-  const dateBuilder = (d) => {
-    let months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"]
-    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",]
-
-    let day = days[d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()]
-    let year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`
-  }
+let x = (weather.timezone)/3600;
 
   return (
-    <div className="App">
+    <div className=
+    {(typeof weather.main !='undefined') ? ((moment.utc().utcOffset(x).format('H')>15) ? 'App night' : 'App'): 'App'}>
       <main className= "d-flex">
-      <div className= "date">{dateBuilder(new Date())}</div>
+        <div>
         <div className= "search-box">
           <input
           type="text"
           className="search-bar"
-          placeholder="Search..."
+          placeholder="type in city..."
           onChange= {e => setQuery(e.target.value)}
           value={query}
           onKeyPress={search}
           ></input>
         </div>
         {(typeof weather.main != "undefined") ? (
-        <div>
+        <div className="card2">
+                <div className= "date">{moment.utc().utcOffset(x).format('ddd MMMM Do, YYYY HH:mm Z')}</div>
           <div className= "location">{weather.name}, {weather.sys.country}</div>
           <div className="description">{weather.weather[0].main}</div>
           <div className = "row weather-box">
           <div className= "col-sm"><img 
-          src = {iconUrl} 
-          alt="weather" 
+          src = {"https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/" + weather.weather[0].icon + ".svg"}
+          alt="weather"
           className= "icon"
           ></img></div>           
           <div className= "col-sm">
-          <div className= "temp">{Math.round(weather.main.temp)-273}°c</div>
+          <div className= {(moment.utc().utcOffset(x).format('H')>15) ? 'temp night' : 'temp'}>{Math.round(weather.main.temp)-273}°c</div>
           </div>
           </div>
           <div className="sunsetSunrise">
             {
-              ((weather.sys.sunrise) > (moment.utc(weather.timezone))
-              ? ['Sunset at ' , (moment.unix(weather.sys.sunset).format("hh:mm a"))]
-              : ['Sunrise at ' , (moment.unix(weather.sys.sunrise).format("hh:mm a"))]
-            )} </div>
+              (((moment.utc().utcOffset(x).format('H') < moment.unix(weather.sys.sunset).utcOffset(x).format('H'))
+              ? ['Sunset at ', moment.unix(weather.sys.sunset).utcOffset(x).format("H:mm a")]
+              : ['Sunrise at ', moment.unix(weather.sys.sunrise).utcOffset(x).format("H:mm a")])
+            )} 
+          </div>
         </div>
+
         ) : ('')}
+        </div>
       </main>
       <footer className="mt-auto py-2  text-center"><small>- Coded by Miriam Said -</small></footer>
     </div>
