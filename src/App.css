@@ -4,10 +4,20 @@
   background-image: url("images/day.jpg");
   background-size: cover;
   transition: 0.4 ease;
+  -webkit-transition: background-image 1.5s linear;
+-moz-transition: background-image 1.5s linear;
+-o-transition: background-image 1.5s linear;
+-ms-transition: background-image 1.5s linear;
+transition: background-image 1.5s linear;
 }
 .App.night {
-  background-image: url("images/night.jpg");
+  background-image: url("images/night.jpg"); 
   transition: 0.4 ease;
+  -webkit-transition: background-image 1.5s linear;
+-moz-transition: background-image 1.5s linear;
+-o-transition: background-image 1.5s linear;
+-ms-transition: background-image 1.5s linear;
+transition: background-image 1.5s linear;
 }
 * {
   box-sizing: border-box;
@@ -21,17 +31,17 @@ main {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.95));
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0, 0, 0, 0.856));
   text-align: center;
   padding:25px;
 }
 
 .card2{
-  background-color: rgba(255, 255, 255, 0.794);
-  box-shadow: -3px 3px 10px rgba(56, 56, 56, 0.842);
+  background-color: rgba(255, 255, 255, 0.712);
+  box-shadow: 0px 3px 5px rgba(56, 56, 56, 0.842);
   padding: 30px;
-  border-radius: 20px;
-  width: 550px;
+  border-radius: 30px;
+  width: 600px;
 }
 footer{
   position: fixed;
@@ -49,9 +59,9 @@ footer{
   border: none;
   background:none;
   outline: none;
-  background-color: rgba(219, 219, 219, 0.5);
+  background-color: rgba(255, 255, 255, 0.548);
   box-shadow: 0px 3px 5px rgba(34, 34, 34, 0.4);
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 20px;
   
   color: black;
@@ -64,34 +74,46 @@ footer{
   font-family: 'Montserrat', sans-serif;
 }
 .search-box .search-bar:focus{
-  background-color: rgba(219, 219, 219, 0.733);
+  background-color: rgba(255, 255, 255, 0.746);
   box-shadow: 0px 3px 5px rgba(34, 34, 34, 0.5);
 }
 
 .location{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 30px;
-  padding: 20px;
+  font-size: 35px;
+  padding: 20px 20px 5px 20px;
   color: rgb(32, 32, 32);;
 }
 .date{
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  padding: 20px;
+  font-size: 18px;
+  padding: 5px 20px 20px 20px;
   color: rgb(32, 32, 32);
 }
 
 .temp{
-  font-size: 70px;
+  font-size: 80px;
   font-weight: 800;
   padding: 15px;
   color: rgb(146, 71, 1);;
   text-shadow: 0px 3px 5px rgba(133, 133, 133, 0.5);
+  transition: 0.3 ease;
+  -webkit-transition: color 1.5s linear;
+-moz-transition: color 1.5s linear;
+-o-transition: color 1.5s linear;
+-ms-transition: color 1.5s linear;
+transition: color 1.5s linear;
 }
 .temp.night {
   color: rgb(0, 24, 133);;
+  transition: 0.3 ease;
+  -webkit-transition: color 1.5s linear;
+-moz-transition: color 1.5s linear;
+-o-transition: color 1.5s linear;
+-ms-transition: color 1.5s linear;
+transition: color 1.5s linear;
 }
 
 .weather-box{
@@ -113,11 +135,14 @@ footer{
 }
 
 .sunsetSunrise{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
   font-size: 15px;
   font-weight: 300;
   padding: 15px;
   color: rgb(32, 32, 32);
 }
+
 @media (max-width: 600px) {
   .card2{
     width: 100%;
@@ -127,3 +152,17 @@ footer{
     background-color: black;
   }
 }
+
+@media only screen and (max-width: 350px) {
+  .card2{
+    width: 280px;
+  }
+  .search-box .search-bar{
+    width: 250px;
+  }
+  footer{
+    position: relative;
+    background-color: black;
+  }
+}
+
