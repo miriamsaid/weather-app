@@ -192,13 +192,14 @@ transition: color 1.5s linear;
   color: rgb(32, 32, 32);
 }
 
+footer{
+  position: relative;
+  background-color: black;
+}
+
 @media (max-width: 600px) {
   .card2{
     width: 100%;
-  }
-  footer{
-    position: relative;
-    background-color: black;
   }
 }
 
@@ -206,10 +207,6 @@ transition: color 1.5s linear;
 
   .wrap{
     width: 100%;
-  }
-  footer{
-    position: relative;
-    background-color: black;
   }
 }
 
