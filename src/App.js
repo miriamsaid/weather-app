@@ -88,3 +88,11 @@ let x = (weather.timezone)/3600; // defining x as the timeezone for each country
 }
 
 export default App;
+
+ 
+//errors and improvements
+
+// multiple sunrise and sunset unix timestamps recieved by openweathermap API
+// are incorrect and therefore the page theme and the sunrise/sunset description is also incorrect
+// consider using a different API or further troubleshooting the issue to check if their are errors
+// within the code or use another function to determine theme and sunrise/sunset description.
